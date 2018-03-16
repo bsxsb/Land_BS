@@ -1,0 +1,57 @@
+<div class="wrapper">
+  <header style="position: fixed;width: 100%;z-index: 1;top: 0;box-shadow: -11px 12px 23px rgba(0, 0, 0, .1);"
+          class="animated fadeInDown p-sm bg-white">
+    <img [src]="configService.logo.login" alt="" style="width:auto">
+  </header>
+  <div class="animated fadeInDown bg-gray-dark" style="height:100%">
+    <carousel class="login-carousel" [interval]="5000" [noWrap]="false" style="height:100%">
+      <slide *ngFor="let slide of slides" [active]="slide.active" style="height:100%">
+        <img [src]="slide.image" class="img-responsive login-bg">
+        <!--<div class="full-height full-width" style="background-repeat: no-repeat;background-size: cover" [ngStyle]="{'background-image': 'url(' + slide.image + ')'}"></div>-->
+        <div class="carousel-caption">
+          <h4>{{slide.name}}</h4>
+        </div>
+      </slide>
+    </carousel>
+    <div class="panel panel-danger panel-flat log-form">
+      <div class="panel-heading text-center">
+        <h4>{{configService.app.name}}</h4>
+      </div>
+      <div class="panel-body mt">
+        <form #loginForm="ngForm" class="form-validate mb-lg" role="form" (submit)="login()" >
+          <div class="form-group has-feedback">
+            <input class="form-control" #username="ngModel" [(ngModel)]="user.username" name="username" placeholder="用户名" required />
+            <span class="fas fa-user form-control-feedback text-muted"></span>
+            <span class="text-danger" *ngIf="username.errors && (username.dirty || username.touched)">请输入用户名！</span>
+          </div>
+          <div class="form-group has-feedback">
+            <input class="form-control" #password="ngModel" [(ngModel)]="user.password" type="password" name="password" placeholder="密码" required />
+            <span class="fas fa-lock form-control-feedback text-muted"></span>
+            <span class="text-danger" *ngIf="password.errors && (password.dirty || password.touched)">请正确填写密码！</span>
+          </div>
+          <div class="clearfix">
+            <div class="checkbox c-checkbox pull-left mt0" *ngIf="false">
+              <label>
+                <input type="checkbox" value="" name="account_remember"/>
+                <span class="fas fa-check"></span>记住我</label>
+            </div>
+          </div>
+          <footer>
+            <button class="btn btn-block btn-primary mt-lg" type="submit" [disabled]="!loginForm.form.valid">登 录</button>
+          </footer>
+        </form>
+        <div class="text-center text-muted">
+          <span>&copy;</span>
+          <span>{{ settings.app.year }}</span>
+          <span>-</span>
+          <span>{{ settings.app.description }}</span>
+          <!--<br/>-->
+          <!--<span>{{ settings.app.description }}</span>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

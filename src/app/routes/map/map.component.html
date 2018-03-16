@@ -1,0 +1,8 @@
+<app-base-map (mapInit)="mapInit()" [wrapper]="map_wrapper"></app-base-map>
+<app-map-measure #mapMeasurePanel [map]="map_wrapper.map" style="position: absolute;top:20px;left:20px;z-index:2"></app-map-measure>
+<app-map-draw #mapDrawPanel [map]="map_wrapper.map" style="position: absolute;top:20px;left:250px;z-index:1050"></app-map-draw>
+<app-map-layer [map]="map_wrapper.map" [amap]="map_wrapper.amap" [satellite]="map_wrapper.option.showSatellite" (layerChecked)="layerChecked($event)"></app-map-layer>
+<app-map-thematic #mapThematicPanel [map]="map_wrapper.map"></app-map-thematic>
+<app-map-selection #mapSelectionPanel [map]="map_wrapper.map" (mapSelected)="mapSelected($event)"></app-map-selection>
+<app-map-time #mapTimePanel [map]="map_wrapper.map"></app-map-time>
+<app-map-tooltip #mapTooltip [map]="map_wrapper.map" [offsetLeft]="-90"></app-map-tooltip>

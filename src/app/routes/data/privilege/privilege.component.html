@@ -1,0 +1,53 @@
+<div class="panel full-height" style="overflow-y:auto">
+  <app-privilege-detail #privilegeDetailPanel
+                    (onSubmit)="submit(privilegeDetailPanel.mode.create,privilegeDetailPanel.privilege)"></app-privilege-detail>
+  <div class="panel-heading sticky-header">
+    <div class="row">
+      <div class="col-lg-6 col-xs-6">
+        <h4>模块管理</h4>
+      </div>
+      <div class="col-lg-6 col-xs-6 text-right">
+        <div class="form-inline">
+          <input class="form-control" name="keyword" [(ngModel)]="option.keyword" (ngModelChange)="search()"
+                 placeholder="搜索模块名"/>
+          <button class="btn btn-primary" (click)="privilegeDetailPanel.show(null,privileges)">添加</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-lg-12">
+        <table class="table table-bordered table-hover">
+          <thead>
+          <tr>
+            <th>#</th>
+            <th>模块名</th>
+            <th>路由</th>
+            <th>上级模块</th>
+            <th>级别</th>
+            <th>操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let privilege of search_privileges;let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{privilege.name}}</td>
+            <td>{{privilege.route}}</td>
+            <td>{{privilege.parent?.name}}</td>
+            <td>{{privilege.type}}</td>
+            <td>
+              <button type="button" class="btn btn-primary btn-xs" (click)="privilegeDetailPanel.show(privilege,privileges)">
+                <span class="fas fa-edit"></span> 修改
+              </button>
+              <button type="button" class="btn btn-danger btn-xs" (click)="delete(privilege)">
+                <span class="fas fa-times"></span> 删除
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

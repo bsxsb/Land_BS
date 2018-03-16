@@ -1,0 +1,15 @@
+<div class="wrapper" style="min-width:1024px; overflow-x: auto;">
+  <app-account ></app-account>
+  <!-- sidebar-->
+  <app-sidebar #aside class="aside" [hidden]="full"></app-sidebar>
+  <!-- offsidebar-->
+  <app-offsidebar class="offsidebar"></app-offsidebar>
+  <!-- Main section-->
+  <section [ngStyle]="{'margin-left':full?'0px':'90px'}">
+    <!-- Page content-->
+    <div class="module-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+<!--  <footer app-footer></footer>-->
+</div>

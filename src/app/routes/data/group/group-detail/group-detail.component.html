@@ -1,0 +1,94 @@
+<div class="panel panel-slide-content full-height"
+     [ngStyle]="{'animation-duration':(isShow?'1s':'0s'), '-webkit-animation-duration':(isShow?'1s':'0s')}"
+     [hidden]="!isShow" [ngClass]="{'fadeInRightBig':isShow}">
+  <div class="panel-heading panel-slide-heading">
+    <span>{{mode.readonly ? '角色信息' : mode.create ? '新增角色' : '更新角色'}}</span>
+    <div class="pull-right">
+      <button  type="button" class="close ph" (click)="hide()">×</button>
+    </div>
+  </div>
+  <div class="panel-body panel-slide-body" >
+    <form #groupForm="ngForm" role="form" (ngSubmit)="submit()" >
+      <div class="row">
+        <div class="col-md-6 col-lg-6">
+          <div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">角色名称:</span>
+            <input type="text" class="form-control" placeholder="请输入名称" name="name" [(ngModel)]="group.name" required/>
+          </div>
+          <!--<div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">初始模块:</span>
+            <input type="text" class="form-control" placeholder="请输入初始模块" name="module" [(ngModel)]="group.module" required/>
+          </div>-->
+          <div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">初始模块:</span>
+            <select class="form-control" name="entry" [(ngModel)]="group.entry" [compareWith]="comparePrivilege" >
+              <option [value]="null" hidden disabled selected>请选择</option>
+              <option *ngFor="let g of filter_privileges" [ngValue]="g">{{g.name}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+          <div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">角色描述:</span>
+            <input type="text" class="form-control" placeholder="请输入角色描述" name="description" [(ngModel)]="group.description"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-heading">权限分配</div>
+        <div class="panel-body">
+          <div class="row-masonry row-masonry-md-2">
+            <div class="col-masonry" *ngFor="let m1 of systems">
+              <div class="panel">
+                <div class="panel-heading">
+                  <div class="checkbox c-checkbox m0">
+                    <label>
+                      <input type="checkbox" [name]="m1.name" [(ngModel)]="m1.selected" (ngModelChange)="select(m1)"/>
+                      <span class="fas fa-check"></span>
+                    </label>
+                    <a (click)="collapse(m1)">{{m1.name}}</a>
+                  </div>
+                </div>
+                <div class="panel-body" [collapse]="m1.isCollapsed" *ngIf="m1.children">
+                  <div class="well well-sm">
+                    <div class="panel" *ngFor="let m2 of m1.children">
+                      <div class="panel-heading">
+                        <div class="checkbox c-checkbox m0">
+                          <label>
+                            <input type="checkbox" [name]="m2.name" [(ngModel)]="m2.selected" (ngModelChange)="select(m2)"/>
+                            <span class="fas fa-check"></span>
+                          </label>
+                          <a (click)="m2.isCollapsed = !m2.isCollapsed">{{m2.name}}</a>
+                        </div>
+                      </div>
+                      <div class="panel-body" [collapse]="m2.isCollapsed" *ngIf="m2.children">
+                        <div class="well well-sm">
+                          <div class="panel" *ngFor="let m3 of m2.children">
+                            <div class="panel-heading">
+                              <div class="checkbox c-checkbox m0">
+                                <label>
+                                  <input type="checkbox" [name]="m3.name" [(ngModel)]="m3.selected" (ngModelChange)="select(m3)"/>
+                                  <span class="fas fa-check"></span>{{m3.name}}
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row text-right ml-lg mr mt">
+        <button type="submit" class="btn btn-success" [disabled]="!groupForm.form.valid"> 提交</button>
+        <button type="button" class="btn btn-danger" (click)="hide()"> 取消</button>
+      </div>
+    </form>
+  </div>
+</div>

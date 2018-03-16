@@ -1,0 +1,44 @@
+<div class="panel panel-slide-content full-height"
+     [ngStyle]="{'animation-duration':(isShow?'1s':'0s'), '-webkit-animation-duration':(isShow?'1s':'0s')}"
+     [hidden]="!isShow" [ngClass]="{'fadeInRightBig':isShow}">
+  <div class="panel-heading panel-slide-heading">
+    <span>{{mode.readonly ? '用户信息' : mode.create ? '新增用户' : '更新用户'}}</span>
+    <div class="pull-right">
+      <button  type="button" class="close ph" (click)="hide()">×</button>
+    </div>
+  </div>
+  <div class="panel-body panel-slide-body" >
+    <form #userForm="ngForm" role="form" (ngSubmit)="submit()" >
+      <div class="row">
+        <div class="col-md-6 col-lg-6">
+          <div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">用户名称:</span>
+            <input type="text" class="form-control" placeholder="请输入名称" name="username" [(ngModel)]="user.username" required/>
+          </div>
+          <div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">联系邮箱:</span>
+            <input type="text" class="form-control" placeholder="请输入联系邮箱" name="email" [(ngModel)]="user.email"/>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+          <div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">电话号码:</span>
+            <input type="text" class="form-control" placeholder="请输入电话号码" name="mobile" [(ngModel)]="user.mobile"/>
+          </div>
+          <div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">所属角色:</span>
+            <select class="form-control" name="group" [(ngModel)]="user.group" [compareWith]="compareGroup" required>
+              <option value="">请选择角色</option>
+              <option *ngFor="let g of groups" [ngValue]="g">{{g.name}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row text-right ml-lg mr mt">
+        <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid"> 提交</button>
+        <button type="button" class="btn btn-danger" (click)="hide()"> 取消</button>
+      </div>
+    </form>
+  </div>
+</div>

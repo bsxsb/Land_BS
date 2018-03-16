@@ -1,0 +1,54 @@
+<div class="page-wrapper">
+    <div class="page-heading clearfix no-select">
+        <div class="page-title" style="width: 200px;"><span class="fas fa-database">  数据中心</span></div>
+        <ul class="page-nav nav navbar-nav">
+
+            <li [routerLinkActive]="['active']">
+                <a appMenuToggle [(show)]="option.show_doc_menu">
+                    文档视频
+                </a>
+                <!-- START Dropdown menu-->
+                <div class="list-group animated flipInX menu-list-item" [hidden]="!option.show_doc_menu" >
+                    <!-- list item-->
+                    <a class="list-group-item" [routerLink]="'/data/res/document'" *ngIf="authService.hasPrivilege('文档管理')">
+                        文档管理
+                    </a>
+                </div>
+                <!-- END Dropdown menu-->
+            </li>
+
+            <li [routerLinkActive]="['active']" *ngIf="authService.hasPrivilege('用户权限')">
+                <a appMenuToggle [(show)]="option.show_user_menu">
+                    用户权限
+                </a>
+                <!-- START Dropdown menu-->
+                <div class="list-group animated flipInX menu-list-item" [hidden]="!option.show_user_menu" >
+                    <!-- list item-->
+                    <a class="list-group-item" [routerLink]="'/data/role/user'" *ngIf="authService.hasPrivilege('用户管理')">
+                        用户管理
+                    </a>
+                    <!-- list item-->
+                    <a class="list-group-item" [routerLink]="'/data/role/group'" *ngIf="authService.hasPrivilege('角色管理')">
+                        角色管理
+                    </a>
+                    <!-- list item-->
+                    <a class="list-group-item" [routerLink]="'/data/role/privilege'" *ngIf="authService.hasPrivilege('角色管理')">
+                        模块管理
+                    </a>
+                    <!-- list item-->
+                    <a class="list-group-item" [routerLink]="'/data/role/company'" *ngIf="authService.hasPrivilege('企业列表')">
+                        企业列表
+                    </a>
+
+                </div>
+                <!-- END Dropdown menu-->
+            </li>
+
+        </ul>
+    </div>
+    <div class="page-content full-height">
+        <div class="full-height" style="background-position: center;background-repeat:no-repeat;background-image:url('assets/img/module/database.gif')">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

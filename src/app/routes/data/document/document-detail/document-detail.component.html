@@ -1,0 +1,81 @@
+<div class="panel panel-slide-content full-height"
+     [ngStyle]="{'animation-duration':(isShow?'1s':'0s'), '-webkit-animation-duration':(isShow?'1s':'0s')}"
+     [hidden]="!isShow" [ngClass]="{'fadeInRightBig':isShow}">
+  <div class="panel-heading panel-slide-heading">
+    <span>{{mode.readonly ? '文档信息' : mode.create ? '新增文档' : '更新文档'}}</span>
+    <div class="pull-right">
+      <button  type="button" class="close ph" (click)="hide()">×</button>
+    </div>
+  </div>
+  <div class="panel-body panel-slide-body" >
+    <form #documentForm="ngForm" role="form" (ngSubmit)="submit()" >
+      <div class="row">
+        <div class="col-md-12 col-lg-12">
+          <div class="input-group mb">
+            <span class="input-group-addon" style="min-width: 125px">文件选择:</span>
+            <input class="form-control" name="doc_file" [ngModel]="document.filename"  readonly required />
+            <span class="input-group-btn">
+               <button class="btn btn-default text-center file-upload" style="display: inline-block;">
+                  <input id="document_file" type="file" name="file" ng2FileSelect [uploader]="uploader1" style="width:100%" (change)="fileChange($event)" />
+                  选择
+               </button>
+            </span>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-12">
+          <div class="input-group mb">
+            <span class="input-group-addon" style="min-width: 125px">文件名称:</span>
+            <input class="form-control" name="doc_name" [(ngModel)]="document.name"/>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+          <div class="input-group mb">
+            <span class="input-group-addon" style="min-width: 125px">文件类型</span>
+            <select class="form-control" name="base_type" [(ngModel)]="document.base_type" [compareWith]="compareDocBaseType">
+              <option [value]="null" hidden disabled selected>请选择</option>
+              <option *ngFor="let t of document_type" [ngValue]="t">
+                {{t.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+          <div class="input-group mb">
+            <select class="form-control" name="sub_type" [(ngModel)]="document.sub_type" required [disabled]="!document.base_type">
+              <option value="" hidden disabled selected>请选择</option>
+              <option *ngFor="let t of document.base_type?.sub_type" [ngValue]="t">{{t}}</option>
+            </select>
+          </div>
+        </div>
+
+        <!--<div class="col-md-6 col-lg-6">-->
+          <!--<div class="input-group mb">-->
+            <!--<span class="input-group-addon"  style="min-width: 125px">文件类型:</span>-->
+            <!--<select class="form-control" name="type" [(ngModel)]="document.type" required>-->
+              <!--<option>政策性文件</option>-->
+              <!--<option>项目文件</option>-->
+              <!--<option>其它文件</option>-->
+            <!--</select>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="col-md-6 col-lg-6">-->
+          <!--<div class="input-group mb">-->
+            <!--<span class="input-group-addon"  style="min-width: 125px">上传人:</span>-->
+            <!--<input type="text" class="form-control" placeholder="请输入上传人" name="author" [(ngModel)]="document.author"/>-->
+          <!--</div>-->
+        <!--</div>-->
+        <div class="col-md-12 col-lg-12">
+          <div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">文件描述:</span>
+            <textarea type="text" class="form-control" rows="3" name="description" [(ngModel)]="document.description"></textarea>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row text-right ml-lg mr mt">
+        <button type="submit" class="btn btn-success" [disabled]="!documentForm.form.valid"> 提交</button>
+        <button type="button" class="btn btn-danger" (click)="hide()"> 取消</button>
+      </div>
+    </form>
+  </div>
+</div>

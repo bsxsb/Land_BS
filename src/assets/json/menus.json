@@ -1,0 +1,13 @@
+[
+  {
+    "text": "海绵地图",
+    "link": "/map",
+    "icon": "fas fa-map fa-lg"
+  },
+  {
+    "text": "数据中心",
+    "link": "/data",
+    "icon": "fas fa-database fa-lg"
+  }
+]
+

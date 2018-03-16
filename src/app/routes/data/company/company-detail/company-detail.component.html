@@ -1,0 +1,96 @@
+<div class="panel panel-slide-content full-height"
+     [ngStyle]="{'animation-duration':(isShow?'1s':'0s'), '-webkit-animation-duration':(isShow?'1s':'0s')}"
+     [hidden]="!isShow" [ngClass]="{'fadeInRightBig':isShow}">
+  <div class="panel-heading panel-slide-heading">
+    <span>{{mode.readonly ? '企业信息' : mode.create ? '新增企业' : '更新企业'}}</span>
+    <div class="pull-right">
+      <button  type="button" class="close ph" (click)="hide()">×</button>
+    </div>
+  </div>
+  <div class="panel-body panel-slide-body" >
+    <form #companyForm="ngForm" role="form" (ngSubmit)="submit()" >
+      <div class="row">
+        <div class="col-md-6 col-lg-6">
+          <div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">企业名称:</span>
+            <input type="text" class="form-control" placeholder="请输入名称" name="name" [(ngModel)]="company.name" required/>
+          </div>
+          <div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">企业地址:</span>
+            <input type="text" class="form-control" placeholder="请输入地址" name="address" [(ngModel)]="company.address"/>
+          </div>
+          <div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">单位类别:</span>
+            <select class="form-control" name="type" [(ngModel)]="company.type" required (change)="changeType()">
+              <option value="规划设计单位">规划设计单位</option>
+              <option value="施工单位">施工单位</option>
+              <option value="监理单位">监理单位</option>
+              <option value="运营单位">运营单位</option>
+              <option value="应急单位">应急单位</option>
+              <option value="责任单位">责任单位</option>
+              <option value="其它单位">其它单位</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+          <div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">联系人:</span>
+            <input type="text" class="form-control" placeholder="请输入联系人" name="contact_person" [(ngModel)]="company.contact_person"/>
+          </div>
+          <div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">联系方式:</span>
+            <input type="text" class="form-control" placeholder="请输入联系方式" name="contact" [(ngModel)]="company.contact"/>
+          </div>
+          <div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">黑/白名单:</span>
+            <select class="form-control" name="black" [(ngModel)]="company.black" required >
+              <option [ngValue]=false>白名单</option>
+              <option [ngValue]=true>黑名单</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="height:320px">
+        <div class="col-md-5 full-height">
+          <div class="panel panel-default full-height" style="overflow-y:auto">
+            <div class="panel-heading" style="border-bottom: 1px solid #cfdbe2">
+              所有用户
+            </div>
+            <div class="panel-body">
+              <div class="list-group">
+                <button class="list-group-item" type="button" *ngFor="let user of users" (click)="add_user = user">
+                  {{user.username}}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 full-height text-center">
+          <div class="btn-group-vertical">
+            <button class="btn btn-default mb" type="button" (click)="addUser()"><span class="fas fa-angle-double-right"></span></button>
+            <button class="btn btn-default" type="button" (click)="removeUser()"><span class="fas fa-angle-double-left"></span></button>
+          </div>
+        </div>
+        <div class="col-md-5 full-height">
+          <div class="panel panel-default full-height" style="overflow-y:auto">
+            <div class="panel-heading" style="border-bottom: 1px solid #cfdbe2">
+              当前企业用户
+            </div>
+            <div class="panel-body">
+              <div class="list-group">
+                <button class="list-group-item" type="button" *ngFor="let user of company.users" (click)="remove_user = user">
+                  {{user.username}}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row text-right ml-lg mr mt">
+        <button type="submit" class="btn btn-success" [disabled]="!companyForm.form.valid"> 提交</button>
+        <button type="button" class="btn btn-danger" (click)="hide()"> 取消</button>
+      </div>
+    </form>
+  </div>
+</div>

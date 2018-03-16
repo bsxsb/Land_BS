@@ -1,0 +1,12 @@
+:host(app-data) {
+    height:100%
+}
+
+.menu-list-item{
+    position: absolute;
+    z-index: 1000;
+    margin-top: 5px;
+    text-align: center;
+    width: 150px;
+    -webkit-filter: drop-shadow(5px 5px 5px #ccc)
+}

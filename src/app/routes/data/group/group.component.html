@@ -1,0 +1,51 @@
+<div class="panel full-height" style="overflow-y:auto">
+    <app-group-detail #groupDetailPanel
+                      (onSubmit)="submit(groupDetailPanel.mode.create,groupDetailPanel.group)"></app-group-detail>
+    <div class="panel-heading sticky-header">
+        <div class="row">
+            <div class="col-lg-6 col-xs-6">
+                <h4>角色管理</h4>
+            </div>
+            <div class="col-lg-6 col-xs-6 text-right">
+                <div class="form-inline">
+                    <input class="form-control" name="keyword" [(ngModel)]="option.keyword" (ngModelChange)="search()"
+                           placeholder="搜索角色名"/>
+                    <button class="btn btn-primary" (click)="groupDetailPanel.show(null)">添加</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>角色名</th>
+                        <th>描述</th>
+                        <th>初始模块</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let group of search_groups;let i = index">
+                        <td>{{i + 1}}</td>
+                        <td>{{group.name}}</td>
+                        <td>{{group.description}}</td>
+                        <td>{{group.entry?.name}}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-xs" (click)="groupDetailPanel.show(group)">
+                                <span class="fas fa-edit"></span> 修改
+                            </button>
+                            <button type="button" class="btn btn-danger btn-xs" (click)="delete(group)"><span
+                                    class="fas fa-times"></span> 删除
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

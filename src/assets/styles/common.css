@@ -1,0 +1,313 @@
+html,body{
+    overflow:hidden!important;
+}
+label{
+    font-weight: normal!important;
+}
+button, html, input, select, textarea {
+    font-family: inherit;
+}
+
+.amap-logo{
+    display: none !important;
+}
+
+.amap-copyright{
+    display: none !important;
+}
+
+/** page start **/
+.module-wrapper,
+.page-wrapper{
+    position: relative;
+    height:100%;
+}
+
+.page-heading{
+    height:50px;
+    background-color : #383d4e;
+/*    background-color:#fafbfc;
+    border-bottom: 1px solid #cfdbe2;*/
+}
+
+.page-heading .page-title{
+    padding-top:10px;
+    padding-left:15px;
+    font-size:20px;
+    width:300px;
+    float:left;
+    color: white;
+}
+
+.page-nav {
+    margin: 0px!important;
+}
+.page-nav > li {
+    display: inline-block;
+}
+.page-nav > li > a {
+    padding-top:15px!important;
+    height:100%;
+    padding-left:15px;
+    padding-right:15px;
+    font-size:16px;
+    text-decoration: none;
+    color: white;
+    /*color:#929292;*/
+}
+
+.page-nav > li > a:hover,
+.page-nav > li > a:focus,
+.page-nav > li.active > a,
+.page-nav > li.open > a {
+    color:#f05050;
+}
+
+.page-nav > li.active {
+    border-bottom: 3px solid #f05050;
+}
+
+.page-content{
+    margin-top:-50px;
+    padding-top:50px;
+    height:100%;
+}
+
+.panel-slide-content {
+    border-left: solid 1px #e1e1e1;
+    -webkit-box-shadow: 0 0px 15px rgba(0, 0, 0, 0.10);
+    box-shadow: 0 0px 15px rgba(0, 0, 0, 0.10);
+    overflow: hidden;
+    position: absolute;
+    background-color: #fff;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    width:800px;
+    z-index: 1050;
+    margin-bottom: 0px;
+}
+
+@media only screen and (min-width: 1400px) {
+    .panel-slide-content{
+        width: 1000px;
+    }
+}
+
+.panel-slide-heading{
+    border-bottom: 1px solid #cfdbe2 !important;
+    height:41px;
+}
+.panel-slide-body{
+    position: absolute;
+    top:41px;
+    bottom:0px;
+    right:0px;
+    overflow-y:auto;
+    width: 100%;
+}
+
+.pagination{
+    margin : 0px !important;
+}
+
+/** utils start **/
+.no-select{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.no-scroll {
+    overflow-x:hidden!important;
+    overflow-y:hidden!important;
+}
+.custom-scrollbar{
+    overflow-y: auto;
+}
+.custom-scrollbar::-webkit-scrollbar{
+    display: none;
+}
+.overflow-y {
+     overflow-y:auto!important;
+ }
+.overflow-x {
+    overflow-x:auto!important;
+}
+.full-height{
+    height: 100% !important;
+}
+.full-width{
+    width: 100% !important;
+}
+/** utils end **/
+
+/** text-fixed-width overflow start **/
+.text-fixed-width-20 {
+    overflow: hidden; /*自动隐藏文字*/
+    text-overflow: ellipsis;/*文字隐藏后添加省略号*/
+    white-space: nowrap;/*强制不换行*/
+    width: 20em;/*不允许出现半汉字截断*/
+    display: block;
+}
+.text-fixed-width-15 {
+    overflow: hidden; /*自动隐藏文字*/
+    text-overflow: ellipsis;/*文字隐藏后添加省略号*/
+    white-space: nowrap;/*强制不换行*/
+    width: 20em;/*不允许出现半汉字截断*/
+    font-size: 1em;
+    display: block;
+}
+.text-fixed-width-10 {
+    overflow: hidden; /*自动隐藏文字*/
+    text-overflow: ellipsis;/*文字隐藏后添加省略号*/
+    white-space: nowrap;/*强制不换行*/
+    width: 10em;/*不允许出现半汉字截断*/
+    display: block;
+}
+.text-fixed-width {
+    overflow: hidden; /*自动隐藏文字*/
+    text-overflow: ellipsis;/*文字隐藏后添加省略号*/
+    white-space: nowrap;/*强制不换行*/
+    display: block;
+}
+/** text-fixed-width overflow end **/
+
+/** avatar start **/
+.avatar {
+    float: left
+}
+.avatar-face {
+    display: inline-block;
+    position: relative;
+    zoom: 1
+}
+.avatar-face :hover{opacity:.7}
+.avatar-face .avatar-text {
+    text-align: center;
+    overflow: hidden;
+    display: inline-block;
+    zoom: 1;
+    vertical-align: middle;
+    background: #e7e7df;
+    font-size: 25px;
+    height: 50px;
+    line-height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    color: #d84c31;
+}
+.avatar-face img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background: #f7f7f7;
+    -webkit-box-shadow: 0 0 1px #ddd;
+    box-shadow: 0 0 1px #ddd
+}
+.avatar-30 {
+    width: 30px !important;
+    height: 30px !important;
+    line-height: 30px !important;
+    font-size: 15px !important;
+}
+/** avatar end **/
+
+#loading-bar .bar {
+    position: inherit !important;
+}
+
+.nav-tabs > li > a {
+    padding:10px 15px;
+}
+
+.modal-dialog {
+    margin: 50px auto;
+}
+
+.progress{
+    margin-bottom: 0px;
+}
+
+
+/* ========================================================================
+   4.22 hvr: hvr.less hover animation
+ ========================================================================== */
+
+
+.esriPopup .titleButton.maximize, .esriPopup .actionsPane{
+    display: none;
+}
+
+.position-relative{
+    position: relative;
+}
+.position-absolute{
+    position: absolute;
+}
+
+.map-time-panel .dijitSliderBottomBumper, .dijitSliderLeftBumper{
+    background-color: #23b7e5;
+}
+
+.map-time-panel .dijitSliderProgressBar{
+    background-color: #23b7e5;
+}
+
+.map-time-panel .dijitSliderBar{
+    border-color: #23b7e5;
+}
+
+.map-time-panel .dijitRuleMark{
+    border-color: #23b7e5;
+}
+
+.map-time-panel .dijitRuleLabel{
+    color: #23b7e5;
+    width: 48px;
+}
+
+.map-time-panel .dijitSliderImageHandle{
+    border-color: #23b7e5;
+}
+
+/* map draw popup menu for delete */
+.dijitMenu .dijitReset {
+    padding:5px;
+}
+
+.dijitButtonNode .dijitArrowButtonInner{
+    display: inline-block;
+    width: 0;
+    height: 0;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+.dijitComboButton{
+    margin: 0px !important;
+    border-radius: 3px;
+    color: white;
+    background-color: #f05050;
+}
+.dijitButtonNode{
+    border: 0px solid gray;
+    padding: 8px 15px;
+}
+.dijitDownArrowButton{
+    padding: 5px;
+}
+.esriPrint{
+    padding: 0px;
+}
+.tundra{
+    width: 80px;
+}
+
+/* login */
+.login-carousel>.carousel, .login-carousel>.carousel>.carousel-inner{
+    height: 100%;
+}

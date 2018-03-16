@@ -1,0 +1,9 @@
+.logo {
+    /*background-image:url('../../../assets/img/yanjiao-logo.png');*/
+    background-size:contain;
+    background-repeat: no-repeat;
+    height:60px;
+}
+.logo:hover{
+    /*background-image:url('../../../assets/img/yanjiao-logo-w.png');*/
+}

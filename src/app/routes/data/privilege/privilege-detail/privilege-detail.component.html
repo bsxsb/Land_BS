@@ -1,0 +1,61 @@
+<div class="panel panel-slide-content full-height"
+     [ngStyle]="{'animation-duration':(isShow?'1s':'0s'), '-webkit-animation-duration':(isShow?'1s':'0s')}"
+     [hidden]="!isShow" [ngClass]="{'fadeInRightBig':isShow}">
+  <div class="panel-heading panel-slide-heading">
+    <span>{{mode.readonly ? '模块信息' : mode.create ? '新增模块' : '更新模块'}}</span>
+    <div class="pull-right">
+      <button  type="button" class="close ph" (click)="hide()">×</button>
+    </div>
+  </div>
+  <div class="panel-body panel-slide-body" >
+    <form #privilegeForm="ngForm" role="form" (ngSubmit)="submit()" >
+      <div class="row">
+        <div class="col-md-6 col-lg-6">
+          <div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">模块名称:</span>
+            <input type="text" class="form-control" placeholder="请输入名称" name="name" [(ngModel)]="privilege.name" required/>
+          </div>
+          <div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">模块级别:</span>
+            <select class="form-control" name="type" [(ngModel)]="privilege.type"  required (change)="changeType()">
+              <option value="" hidden disabled >请选择</option>
+              <option [ngValue]="-1">超级管理</option>
+              <option [ngValue]="0">平台级</option>
+              <option [ngValue]="1">系统级</option>
+              <option [ngValue]="2">模块级</option>
+              <option [ngValue]="3">功能级</option>
+              <option [ngValue]="4">子功能</option>
+              <option [ngValue]="99">组件级</option>
+            </select>
+          </div>
+          <div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">模块路由:</span>
+            <input type="text" class="form-control" placeholder="请输入" name="route" [(ngModel)]="privilege.route"/>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+          <div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">模块描述:</span>
+            <input type="text" class="form-control" placeholder="请输入模块描述" name="description" [(ngModel)]="privilege.description"/>
+          </div>
+          <div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">上级模块:</span>
+            <select class="form-control" name="parent" [(ngModel)]="privilege.parent" [compareWith]="comparePrivilege" >
+              <option [value]="null" hidden disabled selected>请选择</option>
+              <option *ngFor="let g of filter_privileges" [ngValue]="g">{{g.name}}</option>
+            </select>
+          </div>
+          <div class="input-group mb">
+            <span class="input-group-addon"  style="min-width: 125px">模块顺序:</span>
+            <input type="text" class="form-control" placeholder="请输入" name="order" [(ngModel)]="privilege.order"/>
+          </div>
+        </div>
+      </div>
+
+      <div class="row text-right ml-lg mr mt">
+        <button type="submit" class="btn btn-success" [disabled]="!privilegeForm.form.valid"> 提交</button>
+        <button type="button" class="btn btn-danger" (click)="hide()"> 取消</button>
+      </div>
+    </form>
+  </div>
+</div>
